@@ -37,7 +37,8 @@ const useAuth = () => {
     if (authTokens?.access) {
       fetchUserProfile();
     } else {
-      setUser(null); // Clear user when no tokens
+      console.log('Clearing user - no access token');
+      setUser(null);
     }
   }, [authTokens, fetchUserProfile]);
 
@@ -145,9 +146,11 @@ const useAuth = () => {
 
   // Logout User
   const logoutUser = () => {
+    setLoading(true);
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
+    setLoading(false);
   };
 
   return { user, errorMsg, loading, loginUser, registerUser, logoutUser , resendActivation,forgotPassowrd,confirmNewPassword};

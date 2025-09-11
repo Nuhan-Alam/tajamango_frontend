@@ -2,13 +2,13 @@ import { Link } from 'react-router';
 import useCartContext from '../../hooks/useCartContext';
 const UserBarSm = () => {
   const { cart, loading } = useCartContext();
-  const itemsLength = cart?.cart?.items?.length || 0;
+  const itemsLength = cart?.items?.length || 0;
   console.log(cart)
     return (
         <div>
             <li >
               <Link
-                to="/login"
+                to="/dashboard"
                 className="hover:text-[#8FA31E] flex items-center justify-center"
               >
                 Dashboard

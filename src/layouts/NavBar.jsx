@@ -4,9 +4,11 @@ import UserBar from "../components/NavBar/UserBar";
 import LoginBar from "../components/NavBar/LoginBar";
 import LoginBarSm from "../components/NavBar/LoginBarSm";
 import UserBarSm from "../components/NavBar/UserBarSm";
+import useCartContext from "../hooks/useCartContext";
 
 const NavBar = () => {
-  const { user} = useAuthContext();
+  const { user } = useAuthContext();
+  const { loading } = useCartContext();
   return (
     <div className="navbar px-4 absolute top-0 left-0 w-full z-50 bg-transparent">
       {/* Logo */}
@@ -20,23 +22,37 @@ const NavBar = () => {
       <div className="navbar-end hidden lg:flex items-center mr-20 my-2">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a className="text-white hover:text-[#8FA31E] lg:text-lg">Home</a>
+            <Link to="/" className="text-white hover:text-[#8FA31E] lg:text-lg">
+              Home
+            </Link>
           </li>
           <li>
-            <a className="text-white hover:text-[#8FA31E] lg:text-lg">Shop</a>
+            <Link
+              to="/shop"
+              className="text-white hover:text-[#8FA31E] lg:text-lg"
+            >
+              Shop
+            </Link>
           </li>
           <li>
-            <a className="text-white hover:text-[#8FA31E] lg:text-lg">About</a>
+            <Link
+              to="/about"
+              className="text-white hover:text-[#8FA31E] lg:text-lg"
+            >
+              About
+            </Link>{" "}
           </li>
-
           {user === null ? (
-            <LoginBar/>
+            <LoginBar />
+          ) : loading ? (
+            <li className="text-white hover:text-[#8FA31E] lg:text-lg pt-0 md:pt-2">
+              loading...
+            </li>
           ) : (
-            <UserBar/>
-          )}
+            <UserBar />
+          )}{" "}
         </ul>
       </div>
-
 
       {/* Mobile Menu */}
       <div className="navbar-end lg:hidden">
@@ -62,24 +78,37 @@ const NavBar = () => {
             className="menu dropdown-content mt-3 p-2 shadow bg-[#EFF5D2] rounded-box w-30"
           >
             <li>
-              <a className="hover:text-[#8FA31E] flex items-center justify-center">
+              <Link
+                to="/"
+                className="hover:text-[#8FA31E] flex items-center justify-center"
+              >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="hover:text-[#8FA31E] flex items-center justify-center">
+              <Link
+                to="/shop"
+                className="hover:text-[#8FA31E] flex items-center justify-center"
+              >
                 Shop
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="hover:text-[#8FA31E] flex items-center justify-center">
+              <Link
+                to="/about"
+                className="hover:text-[#8FA31E] flex items-center justify-center"
+              >
                 About
-              </a>
+              </Link>
             </li>
-            {user === null ? (         
-                <LoginBarSm/>
+            {user === null ? (
+              <LoginBarSm />
+            ) : loading ? (
+              <li className="hover:text-[#8FA31E] flex items-center justify-center">
+                Loading...
+              </li>
             ) : (
-              <UserBarSm/>
+              <UserBarSm />
             )}
           </ul>
         </div>

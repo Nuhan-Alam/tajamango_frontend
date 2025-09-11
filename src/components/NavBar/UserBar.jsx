@@ -4,13 +4,13 @@ import useCartContext from '../../hooks/useCartContext';
 
 const UserBar = () => {
   const { cart, loading } = useCartContext();
-  const itemsLength = cart?.cart?.items?.length || 0;
+  const itemsLength = cart?.items?.length || 0;
   console.log(cart)
   return (
-    <ul className="flex items-center gap-4">
+    <ul className="flex items-center gap-2">
       <li>
         <Link
-          to="/login"
+          to="/dashboard"
           className="text-white hover:text-[#8FA31E] lg:text-lg"
         >
           Dashboard

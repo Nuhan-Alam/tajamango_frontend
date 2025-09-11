@@ -7,7 +7,7 @@ const Loading = () => {
             >
               <div className="absolute inset-0 bg-black/60"></div>
               <div className="relative z-10 flex items-center justify-center h-full">
-               <span className="loading loading-dots w-28 h-28 text-accent"></span>
+               <span className="loading loading-dots w-28 h-28 text-[#8FA31E]"></span>
               </div>
             
         </div>

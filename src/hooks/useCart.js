@@ -10,24 +10,55 @@ const useCart = () => {
   const [loading, setLoading] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
+
+  // Error-Cart-Reset
+  const handleCartError = useCallback((error, operation) => {
+  console.log(`Error in ${operation}:`, error);
+  
+  if (error.response?.status === 404 || 
+      error.response?.status === 401 || 
+      error.response?.data?.message?.includes('cart not found')) {
+    console.log(`🗑️ Clearing cart due to ${operation} error`);
+    localStorage.removeItem("cartId");
+    setCartId(null);
+    setCart(null);
+  }
+  // if(error.response?.status === 404){window.location.reload()};
+  
+  throw error;
+}, []);
+  
+
+// WARNING!!!!! Response data is different for "GET" and "POST" request Keep that in MIND!!!
   // Crate a new cart
   const createOrGetCart = useCallback(async () => {
+    // console.log('Inside creatorGet');
     setLoading(true);
-    try {
-      const response = await authApiClient.post("/carts/");
+    try {      
       const currentCartId = localStorage.getItem("cartId");
+      // console.log("currentcartid before if:",currentCartId);
       if (!currentCartId) {
-        localStorage.setItem("cartId", response.data.id);
-        setCartId(response.data.id);
-      }
-    //   console.log(response);
+        // console.log("currentcartid inside if:",currentCartId);
+        const response = await authApiClient.post("/carts/");
+
+        console.log("Setting the cart: ", response);
+        const data = response.data.cart?(response.data.cart):(response.data);
+        localStorage.setItem("cartId", data.id)
+        setCartId(data.id);
+        setCart(data);
+      } else {
+      // FETCH existing cart
+      const response = await authApiClient.get(`/carts/${currentCartId}/`);
+      console.log("Getting the cart: ", response);
+      setCartId(currentCartId);
       setCart(response.data);
+      }
     } catch (error) {
-      console.log(error);
+      handleCartError(error,"Create/Get-Cart");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [handleCartError]);
 
   // Add items to the cart
   const AddCartItems = useCallback(
@@ -35,18 +66,17 @@ const useCart = () => {
       setLoading(true);
       if (!cartId) await createOrGetCart();
       try {
-        const response = await authApiClient.post(`/carts/${cartId}/items/`, {
-          product_id,
-          quantity,
+        const response = await authApiClient.post(`/products/${product_id}/add_to_cart/`, {
+          quantity
         });
         return response.data;
       } catch (error) {
-        console.log("Error adding Items", error);
+        handleCartError(error,"AddCartItems");
       } finally {
         setLoading(false);
       }
     },
-    [cartId, createOrGetCart]
+    [cartId, createOrGetCart, handleCartError]
   );
 
   // Update Item quantity
@@ -57,23 +87,25 @@ const useCart = () => {
           quantity,
         });
       } catch (error) {
-        console.log("Error updating cart items", error);
+        handleCartError(error,"updateCartItemQuantity");
       }
     },
-    [cartId]
+    [cartId, handleCartError] 
   );
 
   // Delete Cart Items
   const deleteCartItems = useCallback(
     async (itemId) => {
       try {
-        await authApiClient.delete(`/carts/${cartId}/items/${itemId}/`);
+        const response = await authApiClient.delete(`/carts/${cartId}/items/${itemId}/`);
+        return response;
       } catch (error) {
-        console.log(error);
+        handleCartError(error,"deleteCartItems");
       }
     },
-    [cartId]
+    [cartId, handleCartError]
   );
+
 
    // Initialize cart only once
   useEffect(() => {
@@ -82,6 +114,7 @@ const useCart = () => {
       createOrGetCart();
     }
   }, [initialized, createOrGetCart]);
+  
 
   return {
     cart,
