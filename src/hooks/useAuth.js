@@ -5,7 +5,8 @@ import apiClient from "../services/api-client";
 const useAuth = () => {
   const [user, setUser] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+
 
   const getToken = () => {
     const token = localStorage.getItem("authTokens");
@@ -145,12 +146,13 @@ const useAuth = () => {
   };
 
   // Logout User
-  const logoutUser = () => {
+  const logoutUser = (navigate) => {
     setLoading(true);
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
     setLoading(false);
+    navigate('/login');
   };
 
   return { user, errorMsg, loading, loginUser, registerUser, logoutUser , resendActivation,forgotPassowrd,confirmNewPassword};

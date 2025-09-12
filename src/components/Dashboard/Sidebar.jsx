@@ -8,11 +8,12 @@ import {
   FiUsers,
 } from "react-icons/fi";
 import { SlLogout } from "react-icons/sl";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 
 const Sidebar = () => {
   const { user,logoutUser } = useAuthContext();
+  const navigate = useNavigate();
 
   const customerMenus = [
     { to: "/dashboard", icon: FiBarChart2, label: "Dashboard" },
@@ -53,7 +54,9 @@ const Sidebar = () => {
               </Link>
             </li>
           ))}
-          <button onClick={logoutUser} className="pl-2 gap-2 flex items-center">
+          <button onClick={() => {
+  logoutUser(navigate);
+}} className="pl-2 gap-2 flex items-center hover:bg-red-300 rounded-lg p-2 cursor-pointer transition-colors">
             <SlLogout className="h-4 w-4 text-black"/>
             Logout</button>
         </ul>

@@ -18,6 +18,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import AddProduct from "../pages/Dashboard/Admin/AddProduct";
 import Cart from "../pages/Dashboard/Cart";
+import Orders from "../pages/Dashboard/Orders";
 
 const AppRoute = () => {
   return (
@@ -58,8 +59,8 @@ const AppRoute = () => {
           <Route index element={<Dashboard />} />
           {/* <Route path="profile" element={<Profile />} /> */}
           <Route path="cart" element={<Cart />} />
-          {/* <Route path="orders" element={<Orders />} />
-          <Route path="payment/success/" element={<PaymentSuccess />} /> */}
+          <Route path="orders" element={<Orders />} />
+          {/* <Route path="payment/success/" element={<PaymentSuccess />} /> */}
           <Route path="products/add" element={<AddProduct />} />
         </Route>
       </Route>

@@ -13,10 +13,10 @@ const Navbar = ({ sidebarOpen }) => {
           )}
         </label>
       </div>
-      <div className="flex-1">
+      <div className="flex flex-1 items-center justify-center text-center">
         <h2 className="montserrat-700 text-lg font-semibold">Dashboard</h2>
       </div>
-      <div className="flex-none">
+      {/* <div className="flex-none">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
@@ -26,7 +26,7 @@ const Navbar = ({ sidebarOpen }) => {
               />
             </div>
           </label>
-          {/* <ul
+          <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
@@ -42,9 +42,9 @@ const Navbar = ({ sidebarOpen }) => {
             <li>
               <button>Logout</button>
             </li>
-          </ul> */}
+          </ul>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

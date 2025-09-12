@@ -22,4 +22,13 @@
   font-optical-sizing: auto;
 }
 
-
+.custom-select {
+  appearance: none;        /* removes native arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #C6D870;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: none;
+}
