@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { Suspense, useEffect, useState } from "react";
 import apiClient from "../services/api-client";
@@ -6,11 +6,13 @@ import AddToCartButton from "../components/Products/AddToCartButton";
 import ProductImageGallery from "../components/Products/ProductImageGallery";
 import NavBg from "../components/Shop/NavBg";
 import Loading from "../components/loading";
+import { useOutletContext } from "react-router-dom";
 
 const Shop_Product = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
   const { productId } = useParams();
+  const { localCart, setLocalCart } = useOutletContext();
 
   useEffect(() => {
     setLoading(true);
@@ -87,7 +89,7 @@ const Shop_Product = () => {
           </div>
 
           <div className="mt-auto">
-            <AddToCartButton product={product} />
+            <AddToCartButton product={product} localCart={localCart} setLocalCart={setLocalCart} />
           </div>
         </div>
       </div>

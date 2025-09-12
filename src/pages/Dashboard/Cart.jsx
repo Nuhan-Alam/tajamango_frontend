@@ -1,7 +1,8 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect} from "react";
 import useCartContext from "../../hooks/useCartContext";
 import CartItemList from "../../components/Dashboard/Cart/CartItemList";
 import CartSummary from "../../components/Dashboard/Cart/CartSummary";
+import { useOutletContext } from "react-router-dom";
 
 const Cart = () => {
   const {
@@ -13,15 +14,12 @@ const Cart = () => {
     deleteCartItems,
   } = useCartContext();
 
-  const [localCart, setLocalCart] = useState(cart);
-
+  // const [localCart, setLocalCart] = useState(cart);
+  const { localCart, setLocalCart } = useOutletContext();
   useEffect(() => {
     if (!cart && !loading) createOrGetCart();
   }, [createOrGetCart, cart, loading]);
 
-  useEffect(() => {
-    setLocalCart(cart);
-  }, [cart]);
 
   if (loading) return <p>Loading...</p>;
   if (!localCart) return <p>No Cart Found</p>;

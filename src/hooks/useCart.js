@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import authApiClient from "../services/auth-api-client";
+import useAuthContext from "./useAuthContext";
 
 const useCart = () => {
   // const [authToken] = useState(
@@ -9,7 +10,16 @@ const useCart = () => {
   const [cartId, setCartId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [initialized, setInitialized] = useState(false);
+  const {user} = useAuthContext();
 
+  useEffect(() => {
+        if (user) {
+            // your cart fetching logic
+        } else {
+            setCart(null);
+            setLoading(false);
+        }
+    }, [user]);
 
   // Error-Cart-Reset
   const handleCartError = useCallback((error, operation) => {

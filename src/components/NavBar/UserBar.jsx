@@ -1,11 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import useCartContext from '../../hooks/useCartContext';
+import { Link } from "react-router-dom";
 
-const UserBar = () => {
-  const { cart, loading } = useCartContext();
-  const itemsLength = cart?.items?.length || 0;
-  console.log(cart)
+const UserBar = ({ localCart}) => {
+
+
+  const itemsLength = localCart?.items?.length || 0;
   return (
     <ul className="flex items-center gap-2">
       <li>
@@ -17,7 +15,7 @@ const UserBar = () => {
         </Link>
       </li>
       <li>
-        {!loading && itemsLength > 0 && (
+        {itemsLength > 0 && (
           <div className="hover:bg-[#556B2F] p-2 rounded-lg flex items-center justify-center">
             <div className="indicator cursor-pointer">
               <svg

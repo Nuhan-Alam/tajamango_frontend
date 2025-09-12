@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useOutletContext } from "react-router-dom";
 import Navbar from "../components/Dashboard/Navbar";
 import Sidebar from "../components/Dashboard/Sidebar";
 import NavBg from "../components/Shop/NavBg";
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { localCart, setLocalCart } = useOutletContext();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -31,12 +32,12 @@ const DashboardLayout = () => {
 
         {/* Main content */}
         <main className="p-6">
-          <Outlet />
+          <Outlet context={{ localCart, setLocalCart }} />
         </main>
       </div>
 
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar/>
     </div>
     </>
     

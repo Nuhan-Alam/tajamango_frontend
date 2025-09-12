@@ -4,11 +4,11 @@ import UserBar from "../components/NavBar/UserBar";
 import LoginBar from "../components/NavBar/LoginBar";
 import LoginBarSm from "../components/NavBar/LoginBarSm";
 import UserBarSm from "../components/NavBar/UserBarSm";
-import useCartContext from "../hooks/useCartContext";
 
-const NavBar = () => {
+
+const NavBar = ({localCart,setLocalCart}) => {
   const { user } = useAuthContext();
-  const { loading } = useCartContext();
+
   return (
     <div className="navbar px-4 absolute top-0 left-0 w-full z-50 bg-transparent">
       {/* Logo */}
@@ -40,17 +40,13 @@ const NavBar = () => {
               className="text-white hover:text-[#8FA31E] lg:text-lg"
             >
               About
-            </Link>{" "}
+            </Link>
           </li>
           {user === null ? (
             <LoginBar />
-          ) : loading ? (
-            <li className="text-white hover:text-[#8FA31E] lg:text-lg pt-0 md:pt-2">
-              loading...
-            </li>
-          ) : (
-            <UserBar />
-          )}{" "}
+          ) :
+            <UserBar localCart={localCart} setLocalCart={setLocalCart} />
+          }
         </ul>
       </div>
 
@@ -103,12 +99,8 @@ const NavBar = () => {
             </li>
             {user === null ? (
               <LoginBarSm />
-            ) : loading ? (
-              <li className="hover:text-[#8FA31E] flex items-center justify-center">
-                Loading...
-              </li>
-            ) : (
-              <UserBarSm />
+            ) :(
+              <UserBarSm localCart={localCart} setLocalCart={setLocalCart}/>
             )}
           </ul>
         </div>

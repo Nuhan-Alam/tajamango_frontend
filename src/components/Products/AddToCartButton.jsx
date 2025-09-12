@@ -3,7 +3,7 @@ import { FaCheck, FaShoppingCart } from "react-icons/fa";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import useCartContext from "../../hooks/useCartContext";
 
-const AddToCartButton = ({ product }) => {
+const AddToCartButton = ({ product, localCart, setLocalCart }) => {
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
@@ -23,6 +23,48 @@ const AddToCartButton = ({ product }) => {
 
   const addToCart = async () => {
     setIsAdding(true);
+    const prevLocalCartCopy = localCart; // store a copy of localCart
+    if (prevLocalCartCopy && prevLocalCartCopy) {
+    setLocalCart((prevLocalCart) => {
+      const existingItemIndex = prevLocalCart.items.findIndex(
+        (item) => item.id === product.id
+      );
+
+      let updatedItems;
+
+      if (existingItemIndex !== -1) {
+        // Item exists, update it
+        updatedItems = prevLocalCart.items.map((item) =>
+          item.id === product.id
+            ? {
+                ...item,
+                quantity: quantity,
+                total_price: item.product.price * quantity,
+              }
+            : item
+        );
+      } else {
+        // Item doesn't exist, add it
+        const newItem = {
+          id: product.id,
+          product: product,
+          quantity: quantity,
+          total_price: product.price * quantity,
+        };
+        updatedItems = [...prevLocalCart.items, newItem];
+      }
+
+      return {
+        ...prevLocalCart,
+        items: updatedItems,
+        total_price: updatedItems.reduce(
+          (sum, item) => sum + item.total_price,
+          0
+        ),
+      };
+    });
+  }
+
     try {
       await AddCartItems(product.id, quantity);
       setIsAdded(true);
@@ -30,6 +72,7 @@ const AddToCartButton = ({ product }) => {
     } catch (error) {
       console.log(error);
       setIsAdding(false);
+      setLocalCart(prevLocalCartCopy); // Rollback to previous state if API fails
     }
   };
 
