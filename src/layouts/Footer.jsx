@@ -1,5 +1,4 @@
 import { FaFacebookF, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
-import logo from "../assets/images/tajamangologo.png";
 
 const Footer = () => {
   return (
@@ -9,7 +8,7 @@ const Footer = () => {
         {/* Logo */}
         <div className="flex justify-center md:justify-start">
           <img
-            src={logo}
+            src={"https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861847/tajamangologo_k24bzi.png"}
             alt="Logo"
             className="h-10 w-auto"
           />

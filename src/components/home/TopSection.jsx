@@ -1,10 +1,10 @@
-import home_top_bg from "../../assets/images/home_top_bg.jpg";
+
 
 const TopSection = () => {
   return (
     <div
       className="relative bg-cover bg-center h-[630px]"
-      style={{ backgroundImage: `url(${home_top_bg})` }}
+      style={{ backgroundImage: `url(https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861848/home_top_bg_br6eug.jpg)` }}
     >
       <div className="absolute inset-0 bg-black/60"></div>
       <div className="relative z-10 flex items-center justify-center h-full">

@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import defaultImage from "../../assets/images/default_product.png";
 
 const ProductItem = ({ product }) => {
   return (
@@ -8,7 +7,7 @@ const ProductItem = ({ product }) => {
         <figure className="px-2 md:px-10 pt-2 md:pt-10">
           <img
             src={
-              product.images.length > 0 ? `https://res.cloudinary.com/dbgsrmvgi/${product.images[0].image}` : defaultImage
+              product.images.length > 0 ? `https://res.cloudinary.com/dbgsrmvgi/${product.images[0].image}` : "https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861847/default_product_hbqip5.png"
             }
             alt="Shoes"
             className="rounded-xl aspect-square"

@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import home_top_bg from "../../assets/images/flashsale.jpg";
 const FlashSale = () => {
   return (
     <div className="relative bg-cover bg-center h-[350px]"
-          style={{ backgroundImage: `url(${home_top_bg})` }}>
+          style={{ backgroundImage: `url(https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861849/flashsale_cmy7dl.jpg)` }}>
             <div className="absolute inset-0 bg-black/60">
         <section className="max-w-7xl flex flex-col items-center justify-center mx-auto px-4 py-12 text-center h-full">
       {/* Heading */}

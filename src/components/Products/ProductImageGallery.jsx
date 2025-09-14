@@ -6,11 +6,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Thumbs } from "swiper/modules";
 import { useState } from "react";
-import defaultImage from "../../assets/images/default_product.png";
 
 const ProductImageGallery = ({ images, ProductName }) => {
   const [thumbsSwiper] = useState(null);
-  let displayImages = [{ image: defaultImage }]
+  let displayImages = [{ image: "https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861847/default_product_hbqip5.png" }]
   const isImage = images.length > 0 ? true: false;
   if(isImage){ displayImages =  images};
  
@@ -28,7 +27,7 @@ const ProductImageGallery = ({ images, ProductName }) => {
           <SwiperSlide key={index}>
             <div className="aspect-square bg-base-100">
               <img
-                src={isImage?`https://res.cloudinary.com/dbgsrmvgi/${imageObj.image}`:defaultImage}
+                src={isImage?`https://res.cloudinary.com/dbgsrmvgi/${imageObj.image}`:"https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861847/default_product_hbqip5.png"}
                 alt={ProductName}
                 className="rounded-2xl object-contain aspect-square"
               />

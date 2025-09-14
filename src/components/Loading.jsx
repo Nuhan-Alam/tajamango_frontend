@@ -1,9 +1,8 @@
-import loadingbg from "../assets/images/loading.jpg";
 const Loading = () => {
     return (
         <div
               className="relative bg-cover bg-center h-[630px]"
-              style={{ backgroundImage: `url(${loadingbg})` }}
+              style={{ backgroundImage: `url(https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861847/loading_jpucm3.jpg)` }}
             >
               <div className="absolute inset-0 bg-black/60"></div>
               <div className="relative z-10 flex items-center justify-center h-full">

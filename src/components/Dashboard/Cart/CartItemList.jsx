@@ -1,5 +1,4 @@
 import { FaRegTrashAlt } from "react-icons/fa";
-import defaultImage from "../../../assets/images/default_product.png";
 
 const CartItemList = ({ items, handleUpdateQuantity, handleRemoveItem }) => {
   if (items?.length === 0) {
@@ -29,7 +28,7 @@ const CartItemList = ({ items, handleUpdateQuantity, handleRemoveItem }) => {
                   <div className="flex flex-col items-center justify-center text-center">
                     <img
                         src={
-                          item.product.images?.length > 0 ? `https://res.cloudinary.com/dbgsrmvgi/${item.product.images[0].image}` : defaultImage
+                          item.product.images?.length > 0 ? `https://res.cloudinary.com/dbgsrmvgi/${item.product.images[0].image}` : "https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861847/default_product_hbqip5.png"
                         }
                         alt="Product_Image"
                         className="rounded-xl aspect-square h-15 md:h-25"
