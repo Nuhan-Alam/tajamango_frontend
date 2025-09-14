@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import home_top_bg from "../../assets/images/flashsale.JPG";
+import home_top_bg from "../../assets/images/flashsale.jpg";
 const FlashSale = () => {
   return (
     <div className="relative bg-cover bg-center h-[350px]"

@@ -1,5 +1,5 @@
 import React from 'react';
-import shoptopbg from "../../assets/images/shoptopbg.JPG"
+import shoptopbg from "../../assets/images/shoptopbg.jpg"
 const ShopTopSection = () => {
     return (
         <div

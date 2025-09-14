@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import home_top_bg from "../../assets/images/loginbg.JPG";
+import home_top_bg from "../../assets/images/loginbg.jpg";
 const LoginBg = () => {
   return (
     <div

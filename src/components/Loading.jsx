@@ -1,4 +1,4 @@
-import loadingbg from "../assets/images/loading.JPG";
+import loadingbg from "../assets/images/loading.jpg";
 const Loading = () => {
     return (
         <div
