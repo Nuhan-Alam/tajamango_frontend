@@ -2,7 +2,8 @@ import { Suspense, useEffect} from "react";
 import useCartContext from "../../hooks/useCartContext";
 import CartItemList from "../../components/Dashboard/Cart/CartItemList";
 import CartSummary from "../../components/Dashboard/Cart/CartSummary";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
+import ErrorAlert from "../../components/ErrorAlert";
 
 const Cart = () => {
   const {
@@ -14,6 +15,8 @@ const Cart = () => {
     deleteCartItems,
   } = useCartContext();
 
+  const { status } = useParams();
+
   // const [localCart, setLocalCart] = useState(cart);
   const { localCart, setLocalCart } = useOutletContext();
   useEffect(() => {
@@ -23,6 +26,11 @@ const Cart = () => {
 
   if (loading) return <p>Loading...</p>;
   if (!localCart) return <p>No Cart Found</p>;
+
+  const removeCart = () => {
+    localStorage.removeItem("cartId");
+    setLocalCart(cart);
+  };
 
   const handleUpdateQuantity = async (itemId, newQuantity) => {
     const prevLocalCartCopy = localCart; // store a copy of localCart
@@ -78,9 +86,13 @@ const Cart = () => {
       console.log(error);
     }
   };
-
+ console.log("local cart fron cart.jsx:",localCart);
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container md:mx-auto md:px-4 py-8">
+      <div className="flex justify-center items-center">
+        {status && <ErrorAlert error={"Payment failed something went wrong!"} />}
+      </div>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <Suspense fallback={<p>Loading...</p>}>
@@ -96,6 +108,7 @@ const Cart = () => {
             totalPrice={localCart.total_price}
             itemCount={localCart.items.length}
             cartId={cartId}
+            removeCart={removeCart}
           />
         </div>
       </div>

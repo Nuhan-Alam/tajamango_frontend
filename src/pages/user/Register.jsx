@@ -71,7 +71,9 @@ const Register = () => {
                 type="text"
                 placeholder="..."
                 className="input input-bordered w-full"
-                {...register("first_name")}
+                {...register("first_name", {
+                  required: "First Name is Required",
+                })}
               />
               {errors.first_name && (
                 <span className="label-text-alt text-error">
@@ -89,7 +91,9 @@ const Register = () => {
                 type="text"
                 placeholder="..."
                 className="input input-bordered w-full"
-                {...register("last_name")}
+                {...register("last_name", {
+                  required: "Last Name is Required",
+                })}
               />
               {errors.last_name && (
                 <span className="label-text-alt text-error">
@@ -116,10 +120,9 @@ const Register = () => {
                   {errors.email.message}
                 </span>
               )}
-              {/* <p>Email: {watch("email")}</p> */}
             </div>
 
-            {/* <div className="form-control">
+            <div className="form-control">
               <label className="label" htmlFor="address">
                 <span className="label-text">Address</span>
               </label>
@@ -128,9 +131,11 @@ const Register = () => {
                 type="text"
                 placeholder="..."
                 className="input input-bordered w-full"
-                {...register("address")}
+                {...register("address", {
+                  required: "Address is Required",
+                })}
               />
-            </div> */}
+            </div>
 
             <div className="form-control">
               <label className="label" htmlFor="phone_number">
@@ -141,7 +146,9 @@ const Register = () => {
                 type="text"
                 placeholder="..."
                 className="input input-bordered w-full"
-                {...register("phone_number")}
+                {...register("phone_number", {
+                  required: "Phone Number is Required",
+                })}
               />
             </div>
 

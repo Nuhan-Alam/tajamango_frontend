@@ -17,7 +17,7 @@ const ConfirmNewPassword = () => {
   const { errorMsg, confirmNewPassword } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const { uid, token } = useParams();
-    const [response, setResponse] = useState({uid, token});
+  const [response, setResponse] = useState({uid, token});
 
   const onSubmit = async (data) => {
     setLoading(true);

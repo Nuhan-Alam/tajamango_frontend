@@ -4,15 +4,19 @@ import OrderTable from "./OrderTable";
 import useAuthContext from "../../../hooks/useAuthContext";
 import authApiClient from "../../../services/auth-api-client";
 import CustomSelect from "./CustomSelect";
+import useOrderContext from "../../../hooks/useOrderContext";
 
 
-const OrderCard = ({ order, onCancel }) => {
+const OrderCard = ({ order,setOrders}) => {
   const { user } = useAuthContext();
   const [status, setStatus] = useState(order.status);
-  const [loading, setLoading] = useState(false);
+  const [cancelLoading,setCancelLoading] = useState(false);
+  const [adminLoading,setAdminLoading] = useState(false);
+  const {getUserOrders} =useOrderContext();
 
   const handleStatusChange = async (event) => {
     const newStatus = event.target.value;
+    setAdminLoading(true);
     try {
       const response = await authApiClient.patch(
         `/orders/${order.id}/update_status/`,
@@ -21,38 +25,47 @@ const OrderCard = ({ order, onCancel }) => {
       console.log(response);
       if (response.status === 200) {
         setStatus(newStatus);
-        alert(response.data.status);
+        if(newStatus==="Delivered" || newStatus==="Canceled"){
+          await getUserOrders();
+        }
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      setAdminLoading(false);
     }
   };
 
-  const handlePayment = async () => {
-    setLoading(true);
+
+    const handleCancelOrder = async (orderId) => {
+    setCancelLoading(true);
     try {
-      const response = await authApiClient.post("/payment/initiate/", {
-        amount: order.total_price,
-        orderId: order.id,
-        numItems: order.items?.length,
-      });
-
-      if (response.data.payment_url) {
-        setLoading(false);
-        window.location.href = response.data.payment_url;
-      } else {
-        alert("Payment failed");
+      const response = await authApiClient.post(`/orders/${orderId}/cancel/`);
+      console.log(response);
+      if (response.status === 200) {
+        setOrders((prevOrder) =>
+          prevOrder.map((order) =>
+            order.id === orderId ? { ...order, status: "Canceled" } : order
+          )
+        );
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      setCancelLoading(false);
+      getUserOrders();
     }
   };
+
 
   const options = ["Pending", "Ready To Ship", "Shipped", "Delivered", "Canceled"];
 
   return (
-    <div className="bg-white rounded-lg shadow-lg mb-8 overflow-hidden">
-      <div className="bg-gray-100 p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div className="bg-white flex flex-col  rounded-lg shadow-lg mb-8 overflow-hidden">
+      {adminLoading?(<div className="flex justify-center items-center p-8">
+        <span className="loading loading-dots w-20 h-20 text-[#8FA31E]"></span>
+      </div>):(<>
+        <div className="bg-gray-100 p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h2 className="text-lg font-bold">Order #{order.id}</h2>
           <p className="text-gray-600 text-sm">Placed on {order.created_at}</p>
@@ -68,7 +81,7 @@ const OrderCard = ({ order, onCancel }) => {
           ) : (
             <span
               className={`px-3 py-1 rounded-full text-white text-sm font-medium ${
-                order.status === "Pending" ? "bg-red-400" :order.status === "Canceled" ? "bg-gray-300" :"bg-[#C6D870]"
+                order.status === "Canceled" ? "bg-gray-300" :"bg-[#C6D870]"
               }`}
             >
               {order.status}
@@ -78,10 +91,11 @@ const OrderCard = ({ order, onCancel }) => {
             order.status !== "Canceled" &&
             !user.is_staff && (
               <button
-                onClick={() => onCancel(order.id)}
+                onClick={() => handleCancelOrder(order.id)}
                 className="text-blue-700 hover:underline"
+                disabled={cancelLoading}
               >
-                Cancel
+                {cancelLoading?'Canceling...':'Cancel'}
               </button>
             )}
         </div>
@@ -105,8 +119,12 @@ const OrderCard = ({ order, onCancel }) => {
             <span>Total:</span>
             <span>${order.total_price.toFixed(2)}</span>
           </div>
+          <div className="flex flex-col justify-between  border-t pt-2">
+            <p>Payment Method:</p> 
+            <p className="font-bold">{order.payment_method}</p>
+          </div>
         </div>
-        {!user.is_staff && order.status === "Pending" && (
+        {/* {!user.is_staff && order.status === "Pending" && (
           <button
             className="mt-4 px-4 py-2 bg-[#8FA31E] hover:bg-[#556B2F] text-white rounded-lg transition-colors"
             onClick={handlePayment}
@@ -114,8 +132,10 @@ const OrderCard = ({ order, onCancel }) => {
           >
             {loading ? "Processing..." : "Pay Now"}
           </button>
-        )}
+        )} */}
       </div>
+      </>)}
+      
     </div>
   );
 };

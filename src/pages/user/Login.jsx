@@ -15,17 +15,17 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { errorMsg, loginUser } = useAuthContext();
-  const [loading, setLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    setLoading(true);
+    setLoginLoading(true);
     try {
       await loginUser(data);
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       console.log("Login Failed", error);
     } finally {
-      setLoading(false);
+      setLoginLoading(false);
     }
   };
 
@@ -83,9 +83,9 @@ const Login = () => {
             <button
               type="submit"
               className="btn bg-[#8FA31E] hover:bg-[#556B2F] text-white w-full"
-              disabled={loading}
+              disabled={loginLoading}
             >
-              {loading ? "Logging In..." : "Login"}
+              {loginLoading? "Logging In..." : "Login"}
             </button>
           </form>
 

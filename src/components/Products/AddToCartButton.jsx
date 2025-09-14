@@ -2,13 +2,16 @@ import { useState } from "react";
 import { FaCheck, FaShoppingCart } from "react-icons/fa";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import useCartContext from "../../hooks/useCartContext";
+import useAuthContext from "../../hooks/useAuthContext";
+import { useNavigate } from "react-router";
 
 const AddToCartButton = ({ product, localCart, setLocalCart }) => {
+  const {user} = useAuthContext();
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
   const { AddCartItems } = useCartContext();
-
+  const navigate = useNavigate()
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
@@ -22,6 +25,10 @@ const AddToCartButton = ({ product, localCart, setLocalCart }) => {
   };
 
   const addToCart = async () => {
+    if(!user){
+      navigate('/login');
+      return null;
+    }
     setIsAdding(true);
     const prevLocalCartCopy = localCart; // store a copy of localCart
     if (prevLocalCartCopy && prevLocalCartCopy) {

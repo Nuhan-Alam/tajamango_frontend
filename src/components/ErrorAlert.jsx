@@ -1,6 +1,23 @@
+import { useState, useEffect } from 'react';
+
 const ErrorAlert = ({ error }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 10000); // 5 seconds
+
+    // Cleanup timer if component unmounts
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isVisible || !error) {
+    return null;
+  }
+
   return (
-    <div role="alert" className="alert alert-error">
+    <div role="alert" className="alert alert-error animate-pulse">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6 shrink-0 stroke-current"
@@ -18,4 +35,5 @@ const ErrorAlert = ({ error }) => {
     </div>
   );
 };
+
 export default ErrorAlert;

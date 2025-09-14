@@ -19,7 +19,7 @@ const ProductItem = ({ product }) => {
           <h3 className="font-bold text-xl text-black">${product.price}</h3>
           <p>{product.description}</p>
           <div className="card-actions mt-1">
-            <button className="btn bg-[#8FA31E] hover:bg-[#556B2F] text-white">Buy Now</button>
+            <button className="btn bg-[#8FA31E] hover:bg-[#556B2F] text-white">View Details</button>
           </div>
         </div>
       </div>

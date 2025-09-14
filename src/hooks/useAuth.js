@@ -15,6 +15,23 @@ const useAuth = () => {
 
   const [authTokens, setAuthTokens] = useState(getToken());
 
+    const handleAPIError = (
+    error,
+    defaultMessage = "Something Went Wrong! Try Again"
+  ) => {
+    console.log(error);
+
+    if (error.response && error.response.data) {
+      const errorMessage = Object.values(error.response.data).flat().join("\n");
+      setErrorMsg(errorMessage);
+      return { success: false, message: errorMessage };
+    }
+    setErrorMsg(defaultMessage);
+    return {
+      success: false,
+      message: defaultMessage,
+    };
+  };
 
   // Fetch user Profile
   const fetchUserProfile = useCallback(async () => {
@@ -27,6 +44,7 @@ const useAuth = () => {
       setUser(response.data);
     } catch (error) {
       console.log("Error Fetching user", error);
+      setErrorMsg(error);
     }finally {
       setLoading(false);
     }
@@ -45,7 +63,7 @@ const useAuth = () => {
 
   // Login User
   const loginUser = async (userData) => {
-    setLoading(true);
+  
     setErrorMsg("");
     try {
       const response = await apiClient.post("/auth/jwt/create/", userData);
@@ -55,8 +73,7 @@ const useAuth = () => {
       await fetchUserProfile();
     } catch (error) {
       setErrorMsg(error.response.data?.detail);
-    }finally {
-      setLoading(false);
+      console.log(error);
     }
   };
 
@@ -86,6 +103,34 @@ const useAuth = () => {
       };
     }finally {
       setLoading(false);
+    }
+  };
+
+    // Update User Profile
+  const updateUserProfile = async (data) => {
+    setErrorMsg("");
+    try {
+      await apiClient.put("/auth/users/me/", data, {
+        headers: {
+          Authorization: `JWT ${authTokens?.access}`,
+        },
+      });
+    } catch (error) {
+      return handleAPIError(error);
+    }
+  };
+
+  // Password Change
+  const changePassword = async (data) => {
+    setErrorMsg("");
+    try {
+      await apiClient.post("/auth/users/set_password/", data, {
+        headers: {
+          Authorization: `JWT ${authTokens?.access}`,
+        },
+      });
+    } catch (error) {
+      return handleAPIError(error);
     }
   };
 
@@ -155,7 +200,7 @@ const useAuth = () => {
     navigate('/login');
   };
 
-  return { user, errorMsg, loading, loginUser, registerUser, logoutUser , resendActivation,forgotPassowrd,confirmNewPassword};
+  return { user, errorMsg, loading, loginUser, registerUser,updateUserProfile, changePassword, logoutUser , resendActivation,forgotPassowrd,confirmNewPassword};
 };
 
 export default useAuth;

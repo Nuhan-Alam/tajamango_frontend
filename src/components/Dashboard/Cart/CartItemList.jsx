@@ -1,4 +1,5 @@
 import { FaRegTrashAlt } from "react-icons/fa";
+import defaultImage from "../../../assets/images/default_product.PNG";
 
 const CartItemList = ({ items, handleUpdateQuantity, handleRemoveItem }) => {
   if (items?.length === 0) {
@@ -8,11 +9,10 @@ const CartItemList = ({ items, handleUpdateQuantity, handleRemoveItem }) => {
   }
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Shopping Cart</h2>
-
+    <div className="space-y-4 border-2 border-black py-5 rounded-md">
+      <h2 className="text-xl font-semibold text-center pb-5 border-b-2">Shopping Cart</h2>
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table w-full flex flex-col items-center justify-center text-center ">
           <thead>
             <tr>
               <th>Product</th>
@@ -25,8 +25,19 @@ const CartItemList = ({ items, handleUpdateQuantity, handleRemoveItem }) => {
           <tbody>
             {items.map((item) => (
               <tr key={item.id}>
-                <td className="font-medium">{item.product.name} </td>
-                <td className="text-right">${item.product.price}</td>
+                <td className="font-medium">
+                  <div className="flex flex-col items-center justify-center text-center">
+                    <img
+                        src={
+                          item.product.images?.length > 0 ? `https://res.cloudinary.com/dbgsrmvgi/${item.product.images[0].image}` : defaultImage
+                        }
+                        alt="Product_Image"
+                        className="rounded-xl aspect-square h-15 md:h-25"
+                      />
+                    {item.product.name}
+                  </div>
+                  </td>
+                <td className="text-right">${Number(item.product.price).toFixed(2)}</td>
                 <td>
                   <div className="flex items-center join">
                     <button

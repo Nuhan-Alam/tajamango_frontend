@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import home_top_bg from "../../assets/images/flashsale.JPG";
 const FlashSale = () => {
   return (
@@ -16,12 +17,11 @@ const FlashSale = () => {
       </p>
 
       {/* Button */}
-      <a
-        href="#"
-        className="inline-block bg-transparent border-[#7A9019] border-2 text-white font-medium py-2 px-6 rounded hover:bg-[#7A9019] transition-colors duration-300"
-      >
-        Shop Now
-      </a>
+      <Link
+                      to="/shop"
+className="inline-block bg-transparent border-[#7A9019] border-2 text-white font-medium py-2 px-6 rounded hover:bg-[#7A9019] transition-colors duration-300"                    >
+                    Shop Now
+            </Link>
     </section>
     </div>
     </div>

@@ -1,11 +1,11 @@
 import axios from "axios";
 
-// const authApiClient = axios.create({
-//   baseURL: "https://tajamangocom.vercel.app/api/v1/",
-// });
 const authApiClient = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/v1/",
+  baseURL: "https://tajamangocom.vercel.app/api/v1/",
 });
+// const authApiClient = axios.create({
+//   baseURL: "http://127.0.0.1:8000/api/v1/",
+// });
 
 export default authApiClient;
 
