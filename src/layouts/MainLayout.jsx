@@ -2,7 +2,7 @@ import NavBar from './NavBar';
 import { Outlet } from 'react-router-dom';
 import Footer from './Footer';
 import useAuthContext from '../hooks/useAuthContext';
-import Loading from '../components/loading';
+import Loading from '../components/Loading';
 import { useEffect, useState } from 'react';
 import useCartContext from '../hooks/useCartContext';
 
