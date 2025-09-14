@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import defaultImage from "../../assets/images/default_product.PNG";
+import defaultImage from "../../assets/images/default_product.png";
 
 const ProductItem = ({ product }) => {
   return (

@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Thumbs } from "swiper/modules";
 import { useState } from "react";
-import defaultImage from "../../assets/images/default_product.PNG";
+import defaultImage from "../../assets/images/default_product.png";
 
 const ProductImageGallery = ({ images, ProductName }) => {
   const [thumbsSwiper] = useState(null);

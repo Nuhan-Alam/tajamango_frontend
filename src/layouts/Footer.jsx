@@ -1,5 +1,5 @@
 import { FaFacebookF, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
-import logo from "../assets/images/tajamangologo.PNG";
+import logo from "../assets/images/tajamangologo.png";
 
 const Footer = () => {
   return (

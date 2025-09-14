@@ -1,5 +1,5 @@
 import { FaRegTrashAlt } from "react-icons/fa";
-import defaultImage from "../../../assets/images/default_product.PNG";
+import defaultImage from "../../../assets/images/default_product.png";
 
 const CartItemList = ({ items, handleUpdateQuantity, handleRemoveItem }) => {
   if (items?.length === 0) {
