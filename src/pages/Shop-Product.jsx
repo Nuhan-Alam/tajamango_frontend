@@ -5,7 +5,7 @@ import apiClient from "../services/api-client";
 import AddToCartButton from "../components/Products/AddToCartButton";
 import ProductImageGallery from "../components/Products/ProductImageGallery";
 import NavBg from "../components/Shop/NavBg";
-import Loading from "../components/loading";
+import Loading from "../components/Loading";
 import { useOutletContext } from "react-router-dom";
 
 const Shop_Product = () => {

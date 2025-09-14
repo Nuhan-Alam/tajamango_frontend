@@ -1,6 +1,6 @@
 import useAuthContext from "../hooks/useAuthContext";
 import { Navigate } from "react-router";
-import Loading from "./loading";
+import Loading from "./Loading";
 
 const PrivateRoute = ({ children }) => {
   const { user,loading, errorMsg } = useAuthContext();
