@@ -12,45 +12,10 @@ const CartSummary = ({ totalPrice, itemCount, cartId, removeCart }) => {
   const [paymentMethod, setPaymentMethod] = useState(null);
   const{getUserOrders} = useOrderContext();
 
-  const createOrder = async () => {
-    setLoading(true);
-    console.log(paymentMethod);
-    if (paymentMethod === "cod") {
-      try {
-        const order = await authApiClient.post("/orders/", { cart_id: cartId });
-        if (order.status === 201) {
-          await getUserOrders();
-          removeCart();
-          navigate("/dashboard/orders/");
-        }
-      } catch (error) {
-        console.log(error);
-      } 
-    }
-    if (paymentMethod === "online") {
-      try {
-        const response = await authApiClient.post("/payment/initiate/", {
-          amount: totalPrice,
-          orderId: cartId,
-          numItems: itemCount,
-          forntEndDomain: `http://localhost:5173/dashboard/orders`,
-        });
-        if (response.data.payment_url) {
-          window.location.href = response.data.payment_url;
-        } else {
-          alert("Payment failed");
-        }
-      } catch (error) {
-        console.log("Full error:", error);
-        console.log("Error response:", error.response?.data); // ✅ This will show the actual error
-        console.log("Error status:", error.response?.status);
-      }
+  const orderDetailsPage = () =>{
+    navigate(`/dashboard/orders/details/${cartId}`);
+  }
 
-      getUserOrders();
-      setLoading(false);
-
-    }
-  };
 
   return (
     <div className="card bg-base-100 shadow-xl flex flex-col items-center">
@@ -75,45 +40,20 @@ const CartSummary = ({ totalPrice, itemCount, cartId, removeCart }) => {
               <span>${orderTotal.toFixed(2)}</span>
             </div>
           </div>
-        </div>
-        <div className="bg-[#C6D870]/60 rounded-box mt-5"> 
-      <fieldset className="fieldset rounded-box w-64 p-4 flex flex-col items-center text-center justify-center">
-          <legend className="fieldset-legend text-xl">Payment Method</legend>
-          <div className="flex gap-2">
-            <label className="label">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="cod"
-                className="radio"
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              Cash On Delivery
-            </label>
-            <label className="label">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="online"
-                className="radio"
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              Online Payment
-            </label>
-          </div>
-        </fieldset>
+        </div> 
+      
         <div className="card-actions justify-center mt-4 pb-5">
-          <div className=" border-2 border-[#556B2F] rounded-md">
+    
             <button
-              disabled={itemCount === 0 || !paymentMethod}
-              onClick={createOrder}
+              disabled={itemCount === 0}
+              onClick={orderDetailsPage}
               className="btn bg-[#8FA31E] hover:bg-[#556B2F] text-white w-full"
             >
               {loading ? "Processing..." : "Place Order"}
             </button>
-          </div>
+        
         </div>
-        </div>
+        
         
       </div>
     </div>

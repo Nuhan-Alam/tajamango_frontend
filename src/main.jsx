@@ -21,5 +21,5 @@ createRoot(document.getElementById('root')).render(
         </OrderProvider>
       </CartProvider>
     </AuthProvider>
-  </StrictMode>
+   </StrictMode> 
 )
