@@ -8,8 +8,8 @@ import useOrderContext from "../hooks/useOrderContext";
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { localCart, setLocalCart } = useOutletContext();
-  const {orders,orderLoading}=useOrderContext();
-  console.log("Fron Dashboard Layout", orders);
+  const {orders,orderLoading,getUserOrders}=useOrderContext();
+  getUserOrders();
   const currentOrders = orders?.filter(
   (order) => order.status !== "Canceled" && order.status !== "Delivered"
 );
