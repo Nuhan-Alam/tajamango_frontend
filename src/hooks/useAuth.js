@@ -44,6 +44,7 @@ const useAuth = () => {
       setUser(response.data);
     } catch (error) {
       console.log("Error Fetching user", error);
+      localStorage.removeItem("authTokens");
       setErrorMsg(error);
     }finally {
       setLoading(false);
