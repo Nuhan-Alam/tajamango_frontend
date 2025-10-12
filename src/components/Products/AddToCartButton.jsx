@@ -30,8 +30,10 @@ const AddToCartButton = ({ product, localCart, setLocalCart }) => {
       return null;
     }
     setIsAdding(true);
-    const prevLocalCartCopy = localCart; // store a copy of localCart
-    if (prevLocalCartCopy && prevLocalCartCopy) {
+    const prevLocalCartCopy = localCart; 
+    try {
+      await AddCartItems(product.id, quantity);
+        if (prevLocalCartCopy && prevLocalCartCopy) {
     setLocalCart((prevLocalCart) => {
       const existingItemIndex = prevLocalCart.items.findIndex(
         (item) => item.id === product.id
@@ -72,10 +74,9 @@ const AddToCartButton = ({ product, localCart, setLocalCart }) => {
     });
   }
 
-    try {
-      await AddCartItems(product.id, quantity);
       setIsAdded(true);
       setIsAdding(false);
+
     } catch (error) {
       console.log(error);
       setIsAdding(false);

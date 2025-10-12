@@ -12,6 +12,7 @@ const Profile = () => {
   const [isUpdated,setIsUpdated] = useState(false);
   const { user, updateUserProfile, changePassword, errorMsg } =
     useAuthContext();
+  
   const {
     register,
     handleSubmit,

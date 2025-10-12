@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useOutletContext } from "react-router-dom";
 import Navbar from "../components/Dashboard/Navbar";
 import Sidebar from "../components/Dashboard/Sidebar";
@@ -9,7 +9,9 @@ const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { localCart, setLocalCart } = useOutletContext();
   const {orders,orderLoading,getUserOrders}=useOrderContext();
-  getUserOrders();
+  useEffect(() => {
+    getUserOrders();
+  }, []); 
   const currentOrders = orders?.filter(
   (order) => order.status !== "Canceled" && order.status !== "Delivered"
 );
