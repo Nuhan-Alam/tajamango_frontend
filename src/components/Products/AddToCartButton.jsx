@@ -33,6 +33,7 @@ const AddToCartButton = ({ product, localCart, setLocalCart }) => {
     const prevLocalCartCopy = localCart; 
     try {
       await AddCartItems(product.id, quantity);
+      
         if (prevLocalCartCopy && prevLocalCartCopy) {
     setLocalCart((prevLocalCart) => {
       const existingItemIndex = prevLocalCart.items.findIndex(

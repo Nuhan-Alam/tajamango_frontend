@@ -2,6 +2,7 @@ import TopSection from '../components/home/TopSection';
 import SecondSection from '../components/home/SecondSection';
 import FlashSale from '../components/home/FlashSale';
 import TrendingProducts from '../components/home/TrendingProducts';
+import TestimonialsSection from '../components/home/TestimonialsSection';
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <SecondSection/>
             <FlashSale/>
             <TrendingProducts/>
+            <TestimonialsSection/>
         </div>
     );
 };

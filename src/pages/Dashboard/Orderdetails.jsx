@@ -3,6 +3,7 @@ import useOrderContext from "../../hooks/useOrderContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import authApiClient from "../../services/auth-api-client";
+import useCartContext from "../../hooks/useCartContext";
 
 const Orderdetails = () => {
   const [loading, setLoading] = useState(false);
@@ -11,6 +12,7 @@ const Orderdetails = () => {
   const { getUserOrders } = useOrderContext();
   const { cartId } = useParams();
   const [successMsg, setSuccessMsg] = useState("");
+  const {createOrGetCart} = useCartContext();
 
 
   const {
@@ -32,15 +34,19 @@ const Orderdetails = () => {
         const order = await authApiClient.post("/orders/", { cart_id: cartId });
         console.log("Order stuatusa: ",order.status)
         if (order.status === 201) {
-          await getUserOrders();
+            await getUserOrders();
             setLoading(false);
+            localStorage.removeItem("cartId");
+            createOrGetCart();
             navigate("/dashboard/orders/");
+            // window.location.href = '/dashboard/orders';
             return; 
         }
       } catch (error) {
         console.log(error);
       }
     }
+    
     if (paymentMethod === "online") {
       try {
         const response = await authApiClient.post("/payment/initiate/", {
@@ -53,6 +59,9 @@ const Orderdetails = () => {
           forntEndDomain: `http://localhost:5173/dashboard/orders`,
         });
         if (response.data.payment_url) {
+          localStorage.removeItem("cartId");
+          createOrGetCart();
+          setLoading(false);
           window.location.href = response.data.payment_url;
         } else {
           alert("Payment failed");
@@ -62,11 +71,8 @@ const Orderdetails = () => {
         console.log("Error response:", error.response?.data); 
         console.log("Error status:", error.response?.status);
       }
-
-      
     }
-    setLoading(false);
-
+    
   };
 
   //   const createOrder = async () => {
