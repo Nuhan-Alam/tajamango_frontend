@@ -3,7 +3,7 @@ import Product from '../Products/Product';
 
 const TrendingProducts = () => {
     return (
-        <div>
+        <div className='bg-[#EFF5D2]/50'>
             <Product/>
         </div>
     );

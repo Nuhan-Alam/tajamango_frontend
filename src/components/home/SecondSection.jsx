@@ -1,7 +1,7 @@
 import { CreditCard, Truck, Package, Heart } from "lucide-react";
 const SecondSection = () => {
     return (
-        <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="bg-[#EFF5D2]/50 max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       
       {/* Secure Payment */}
       <div className="flex flex-col items-center text-center">

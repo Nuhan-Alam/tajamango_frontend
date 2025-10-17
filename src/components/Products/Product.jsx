@@ -25,7 +25,7 @@ const Product = () => {
   }, []);
 
   return (
-    <section className="bg-gray-50">
+    <section className="">
       <div className="py-12 px-4 pl-9 md:pl-0 max-w-7xl mx-auto">
         <div className="flex justify-between items-center px-4 md:px-8 mb-4">
           <h2 className="text-2xl md:text-4xl font-bold">Trending Products</h2>

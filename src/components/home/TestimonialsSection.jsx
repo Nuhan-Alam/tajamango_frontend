@@ -22,7 +22,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="bg-[#C6D870] py-16 px-4 md:px-8 lg:px-16">
+    <section className="bg-[#EFF5D2] py-16 px-4 md:px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
@@ -39,12 +39,12 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-[#EFF5D2] rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="bg-[#C6D870] rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               {/* Quote Icon */}
               <div className="mb-6">
                 <svg
-                  className="w-10 h-10 text-[#556B2F]"
+                  className="w-10 h-10 text-[#EFF5D2]"
                   viewBox="0 0 512 512"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"

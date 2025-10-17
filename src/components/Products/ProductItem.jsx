@@ -3,7 +3,7 @@ import { Link } from "react-router";
 const ProductItem = ({ product }) => {
   return (
     <Link to={`/shop/${product.id}`}>
-      <div className=" card bg-base-100 w-60 md:w-96 shadow-sm">
+      <div className="card w-auto md:w-96 shadow-sm">
         <figure className="px-2 md:px-10 pt-2 md:pt-10">
           <img
             src={

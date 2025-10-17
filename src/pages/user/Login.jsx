@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
 import ErrorAlert from "../../components/ErrorAlert";
-
+import useCartContext from "../../hooks/useCartContext";
 
 const Login = () => {
   const {
@@ -15,12 +15,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { errorMsg, loginUser } = useAuthContext();
+  const {createOrGetCart} = useCartContext();
   const [loginLoading, setLoginLoading] = useState(false);
+
 
   const onSubmit = async (data) => {
     setLoginLoading(true);
     try {
       await loginUser(data);
+      await createOrGetCart();
       navigate("/");
     } catch (error) {
       console.log("Login Failed", error);

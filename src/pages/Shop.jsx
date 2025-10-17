@@ -6,7 +6,7 @@ import ProductSection from '../components/Shop/ProductSection';
 
 const Shop = () => {
     return (
-        <div>
+        <div className='bg-[#EFF5D2]/50'>
             <NavBg/>
             <ShopTopSection/>
             <ProductSection/>
