@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
+/* Configure your custom theme */
+@plugin "daisyui" {
+  themes: light --default, dark;
+}
+
+/* Custom theme colors */
+[data-theme="light"] {
+  --color-primary: #C6D870;
+  --color-secondary: #f6d860;
+  --color-accent: #37cdbe;
+}
+
 .montserrat-400 {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;

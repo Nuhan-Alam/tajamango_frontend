@@ -11,7 +11,7 @@ const ProductSection = () => {
   const [selectedCategory, setSelecetedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
+  // const [showFilters, setShowFilters] = useState(false);
 
   const { products, loading, totalPages } = useFetchProduct(
     currentPage,
@@ -33,18 +33,17 @@ const ProductSection = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="flex flex-col md:flex-row max-w-7xl justify-center gap-3 mx-auto px-4 py-8">
 
-      <div className="flex items-center justify-center mb-8">
+      {/* <div className="flex items-center justify-center mb-8">
         <button
           onClick={() => setShowFilters(!showFilters)}
           className="px-4 py-2 bg-[#8FA31E] hover:bg-[#556B2F] text-white rounded-lg transition-colors"
         >
           {showFilters ? "Hide Filters" : "Show Filters"}
         </button>
-      </div>  
-
-      {showFilters && (
+      </div>   */}
+     
         <FilterSection
           priceRange={priceRange}
           handlePriceChange={handlePriceChange}
@@ -56,13 +55,15 @@ const ProductSection = () => {
           sortOrder={sortOrder}
           handleSorting={setSortOrder}
         />
-      )}
-      <ProductList products={products} loading={loading} />
+     <div className="w-auto md:w-[1000px]">
+        <ProductList products={products} loading={loading} />
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
         handlePageChange={setCurrentPage}
       />
+      </div>
+      
     </div>
   );
 };

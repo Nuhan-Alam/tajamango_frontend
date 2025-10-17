@@ -26,7 +26,7 @@ const Shop_Product = () => {
   if (loading) return <div><Loading/></div>;
   if (!product) return <div>Product Not Found...</div>;
   return (
-    <>
+    <div className="bg-[#EFF5D2]/50">
     <NavBg/>
     <div className="w-3/4 mx-auto px-4 py-8">
       <div className="mb-6">
@@ -95,7 +95,7 @@ const Shop_Product = () => {
       </div>
       {/* <ReviewSection /> */}
     </div>
-    </>
+    </div>
   );
 };
 
