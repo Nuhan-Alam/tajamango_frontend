@@ -12,14 +12,14 @@ const NavBar = ({localCart,setLocalCart}) => {
   return (
     <div className="navbar px-4 absolute top-0 left-0 w-full z-50 bg-transparent">
       {/* Logo */}
-      <div className="navbar-start lg:my-2">
-        <a className="montserrat-400 text-white text-xl lg:ml-20 lg:text-2xl">
+      <div className="navbar-start ">
+        <a className="montserrat-400 pb-3 text-white text-xl lg:ml-20 lg:text-2xl">
           TajaMango.com
         </a>
       </div>
 
       {/* Desktop Menu */}
-      <div className="navbar-end hidden lg:flex items-center mr-20 my-2">
+      <div className="navbar-end hidden lg:flex items-center mr-20 ">
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link to="/" className="text-white hover:text-[#8FA31E] lg:text-lg">

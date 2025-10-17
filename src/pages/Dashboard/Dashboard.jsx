@@ -53,24 +53,30 @@ const Profile = () => {
   };
 
   return (
-    <div className="border-1 border-[#8FA31E]/60 card w-full max-w-2xl mx-auto bg-base-100 shadow-xl">
+    <div className="border-1 border-[#8FA31E]/60 card w-full max-w-2xl mx-auto shadow-xl">
       <div className="card-body flex justify-center items-center">
         {errorMsg && <ErrorAlert error={errorMsg} />}
         <h2 className="card-title text-2xl mb-8">Profile Information</h2>
         {isUpdated && <SuccessAlert message="Profile Info Updated" setIsUpdated={setIsUpdated} />}
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ProfileForm
+          <div>
+            <div><ProfileForm
             register={register}
             errors={errors}
             isEditing={isEditing}
-          />
-
-          <PasswordChangeForm
+          /></div>
+            <div >
+              <PasswordChangeForm
             errors={errors}
             register={register}
             isEditing={isEditing}
             watch={watch}
           />
+            </div>
+          </div>
+          
+
+          
 
           <ProfileButtons
             isEditing={isEditing}

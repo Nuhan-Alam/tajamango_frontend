@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Navbar = ({ sidebarOpen }) => {
   return (
-    <div className="navbar bg-base-100 border-b">
+    <div className="navbar lg:hidden">
       <div className="flex-none lg:hidden">
         <label htmlFor="drawer-toggle" className="btn btn-square btn-ghost">
           {sidebarOpen ? (
@@ -13,38 +13,6 @@ const Navbar = ({ sidebarOpen }) => {
           )}
         </label>
       </div>
-      <div className="flex flex-1 items-center justify-center text-center">
-        <h2 className="montserrat-700 text-lg font-semibold">Dashboard</h2>
-      </div>
-      {/* <div className="flex-none">
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img
-                alt="User avatar"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <Link href="/profile" className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/settings">Settings</Link>
-            </li>
-            <li>
-              <button>Logout</button>
-            </li>
-          </ul>
-        </div>
-      </div> */}
     </div>
   );
 };

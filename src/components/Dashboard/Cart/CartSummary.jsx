@@ -18,7 +18,7 @@ const CartSummary = ({ totalPrice, itemCount, cartId, removeCart }) => {
 
 
   return (
-    <div className="card bg-base-100 shadow-xl flex flex-col items-center">
+    <div className="card bg-[#C6D870]/50  shadow-xl flex flex-col items-center">
       <div className="card-body">
         <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
         <div className="space-y-2">
@@ -34,7 +34,7 @@ const CartSummary = ({ totalPrice, itemCount, cartId, removeCart }) => {
             <span className="text-gray-500">Estimated Tax</span>
             <span>${tax.toFixed(2)}</span>
           </div>
-          <div className="border-t border-gray-200 pt-2 mt-2">
+          <div className="border-t pt-2 mt-2">
             <div className="flex justify-between font-medium">
               <span>Order Total</span>
               <span>${orderTotal.toFixed(2)}</span>

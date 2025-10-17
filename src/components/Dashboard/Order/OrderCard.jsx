@@ -61,11 +61,11 @@ const OrderCard = ({ order,setOrders}) => {
   const options = ["Pending", "Ready To Ship", "Shipped", "Delivered", "Canceled"];
 
   return (
-    <div className="bg-white flex flex-col  rounded-lg shadow-lg mb-8 overflow-hidden">
+    <div className="bg-[#C6D870]/20  flex flex-col  rounded-lg shadow-lg mb-8 overflow-hidden">
       {adminLoading?(<div className="flex justify-center items-center p-8">
         <span className="loading loading-dots w-20 h-20 text-[#8FA31E]"></span>
       </div>):(<>
-        <div className="bg-gray-100 p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h2 className="text-lg font-bold">Order #{order.id}</h2>
           <p className="text-gray-600 text-sm">Placed on {order.created_at}</p>
@@ -81,7 +81,7 @@ const OrderCard = ({ order,setOrders}) => {
           ) : (
             <span
               className={`px-3 py-1 rounded-full text-white text-sm font-medium ${
-                order.status === "Canceled" ? "bg-gray-300" :"bg-[#C6D870]"
+                order.status === "Canceled" ? "bg-red-300" :"bg-[#C6D870]"
               }`}
             >
               {order.status}

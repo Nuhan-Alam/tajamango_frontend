@@ -5,7 +5,7 @@ const OrderTable = ({ items }) => {
     <div className="overflow-x-auto">
       <table className="table-auto w-full border-collapse">
         <thead>
-          <tr className="bg-gray-50 border-b">
+          <tr className="border-b">
             <th className="px-4 py-3 text-left">Product</th>
             <th className="px-4 py-3 text-right">Price</th>
             <th className="px-4 py-3 text-right">Quantity</th>

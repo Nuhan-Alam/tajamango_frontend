@@ -39,12 +39,12 @@ const DashboardLayout = () => {
       />
 
       {/* Page content */}
-      <div className="drawer-content flex flex-col">
+      <div className="bg-[#C6D870]/50 drawer-content flex flex-col">
         {/* Navbar */}
         <Navbar sidebarOpen={sidebarOpen} />
 
         {/* Main content */}
-        <main className="p-6">
+        <main className="py-10 px-2">
           <Outlet context={{ localCart, setLocalCart,currentOrders,history,orders }} />
         </main>
       </div>

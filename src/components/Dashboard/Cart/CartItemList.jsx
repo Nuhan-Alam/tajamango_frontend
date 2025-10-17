@@ -57,7 +57,7 @@ const CartItemList = ({ items, handleUpdateQuantity, handleRemoveItem }) => {
                       onChange={(e) =>
                         handleUpdateQuantity(item.id, e.target.value)
                       }
-                      className="input input-xs input-bordered join-item w-12 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      className="input input-xs bg-[#C6D870]/50  input-bordered join-item w-12 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
                     <button
                       onClick={() =>

@@ -21,7 +21,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                className="input input-bordered bg-base-200 w-full pr-10"
+                className="input input-bordered bg-[#EFF5D2]/50 disabled:bg-[#EFF5D2]/50 w-1/2 pr-10"
                 disabled={!isEditing}
                 {...register("current_password", {
                   required: "Current Password is Required",
@@ -40,7 +40,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                className="input input-bordered bg-base-200 w-full pr-10"
+                className="input input-bordered bg-[#EFF5D2]/50 disabled:bg-[#EFF5D2]/50 w-1/2 pr-10"
                 disabled={!isEditing}
                 {...register("new_password", {
                   required: "New Password is Required",
@@ -63,7 +63,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                className="input input-bordered bg-base-200 w-full pr-10"
+                className="input input-bordered bg-[#EFF5D2]/50 disabled:bg-[#EFF5D2]/50 w-1/2 pr-10"
                 disabled={!isEditing}
                 {...register("confirm_new_password", {
                   validate: (value) =>

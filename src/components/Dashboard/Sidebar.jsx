@@ -42,26 +42,25 @@ const Sidebar = ({ currentOrders }) => {
   const menuItems = user.is_staff ? adminMenues : customerMenus;
 
   return (
-    <div className="drawer-side mt-18 md:mt-0 z-10">
+    <div className="bg-[#C6D870]/50 drawer-side z-10">
       <label
         htmlFor="drawer-toggle"
         aria-label="close sidebar"
         className="drawer-overlay"
       ></label>
-      <aside className="menu bg-base-200 w-64 min-h-full p-4 text-base-content">
+      <aside className="menu bg-[#C6D870] md:bg-[#C6D870]/50 flex justify-end items-start pt-12 w-64 min-h-full p-4 text-base-content">
         {/* Sidebar menu */}
-        <ul className="menu menu-md gap-2">
+        <ul className="menu menu-md flex justify-start items-start gap-5">
           {menuItems.map((item, index) => (
             <li key={index}>
               <Link to={item.to} className="flex items-center">
                 <div className="indicator cursor-pointer">
-                  <item.icon className="h-4 w-4" />
+                  <item.icon className="h-4 md:h-6 w-4 md:w-6" />
                   {item.label==="Current Orders" && orderNum>0 && <p className=" rounded-md px-1 indicator-item bg-red-300 text-white lg:text-sm">
                     {orderNum}
                   </p>}
-                  
                 </div>
-                <span>{item.label}</span>
+                <span className="pl-3">{item.label}</span>
               </Link>
             </li>
           ))}
@@ -71,8 +70,8 @@ const Sidebar = ({ currentOrders }) => {
             }}
             className="pl-2.5 gap-2 flex items-center hover:bg-red-300 rounded-lg p-2 cursor-pointer transition-colors"
           >
-            <SlLogout className="h-4 w-4 text-black" />
-            Logout
+            <SlLogout className="h-4 md:h-6 w-4 md:w-6 text-black" />
+            <span className="pl-3">Logout</span>
           </button>
         </ul>
 
