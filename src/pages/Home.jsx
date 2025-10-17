@@ -32,8 +32,8 @@ const Home = () => {
         <>
           <TopSection />
           <Stats stats={stats} />
-          <SecondSection />
           <FlashSale />
+          <SecondSection />
           <TrendingProducts />
           <TestimonialsSection />
           <FAQ />
