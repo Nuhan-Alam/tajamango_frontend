@@ -1,4 +1,5 @@
 import { FaFacebookF, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -16,10 +17,16 @@ const Footer = () => {
 
         {/* Navigation Menu */}
         <div className="flex flex-col md:flex-row justify-center items-center md:space-x-12">
-          <a href="https://websitedemos.net/generic-ecommerce-02/" className="text-gray-700 hover:text-gray-900">Home</a>
-          <a href="https://websitedemos.net/generic-ecommerce-02/shop/" className="text-gray-700 hover:text-gray-900">Shop</a>
-          <a href="https://websitedemos.net/generic-ecommerce-02/about/" className="text-gray-700 hover:text-gray-900">About</a>
-          <a href="https://websitedemos.net/generic-ecommerce-02/contact/" className="text-gray-700 hover:text-gray-900">Contact</a>
+          <Link to="/" className="text-gray-700 hover:text-gray-900" onClick={() => window.scrollTo(0, 0)}>
+              Home
+            </Link>
+          <Link to="/shop" className="text-gray-700 hover:text-gray-900" onClick={() => window.scrollTo(0, 0)}>
+              Shop
+            </Link>
+          <Link to="/about" className="text-gray-700 hover:text-gray-900" onClick={() => window.scrollTo(0, 0)}>
+              About
+            </Link>
+          <a href="" className="text-gray-700 hover:text-gray-900">Contact</a>
         </div>
 
         {/* Social Icons */}

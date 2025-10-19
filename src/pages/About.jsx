@@ -80,7 +80,7 @@ const About = () => {
                 />
                 <div>
                   <h6 className="font-semibold text-gray-900">Nuhan Alam</h6>
-                  <p className="text-sm text-gray-600">CEO & Co-founder @ Company</p>
+                  <p className="text-sm text-gray-600">CEO & Co-founder @ TajaMango</p>
                 </div>
               </div>
             </div>
