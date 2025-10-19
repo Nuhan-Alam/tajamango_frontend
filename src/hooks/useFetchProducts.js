@@ -11,7 +11,7 @@ const useFetchProduct = (
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
-
+  const [totalresult,setTotalresult] =useState(0);
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -21,6 +21,7 @@ const useFetchProduct = (
         const data = await response.data;
 
         setProducts(data.results);
+        setTotalresult(data.count)
         setTotalPages(Math.ceil(data.count / data.results.length));
       } catch (error) {
         console.log(error);
@@ -31,7 +32,7 @@ const useFetchProduct = (
     fetchProducts();
   }, [currentPage, priceRange, selectedCategory, searchQuery, sortOrder]);
 
-  return { products, loading, totalPages };
+  return { products, loading, totalPages, totalresult };
 };
 
 export default useFetchProduct;

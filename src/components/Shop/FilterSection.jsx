@@ -10,7 +10,7 @@ const FilterSection = ({
   handleSorting,
 }) => {
   return (
-    <div className=" my-8 mx-2 flex flex-col gap-6">
+    <div className=" flex flex-col gap-3">
       {/* Price Range */}
       <div className=" p-4 rounded-lg shadow">
         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -74,7 +74,7 @@ const FilterSection = ({
           value={selectedCategory}
           onChange={(e) => handleCategoryChange(e.target.value)}
         >
-          <option value="text-sm">All Categories</option>
+          <option value="" className="bg-[#EFF5D2] text-sm">All Categories</option>
           {categories.map((category) => (
             <option key={category.id} className="bg-[#EFF5D2] text-sm" value={category.id}>
               {category.name}
@@ -99,7 +99,7 @@ const FilterSection = ({
 
       {/* Sorting  */}
       <div className="text-sm p-2 rounded-lg shadow">
-        <label className="block text-sm text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
           Sort By Price/Most-Recent
         </label>
         <select

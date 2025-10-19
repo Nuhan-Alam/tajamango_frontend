@@ -4,6 +4,7 @@ import Pagination from "./Pagination";
 import useFetchProduct from "../../hooks/useFetchProducts";
 import FilterSection from "./FilterSection";
 import useFetchCategories from "../../hooks/useFetchCategories";
+import FAB_Filter from "./FAB_Filter";
 
 const ProductSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +14,7 @@ const ProductSection = () => {
   const [sortOrder, setSortOrder] = useState("");
   // const [showFilters, setShowFilters] = useState(false);
 
-  const { products, loading, totalPages } = useFetchProduct(
+  const { products, loading, totalPages, totalresult } = useFetchProduct(
     currentPage,
     priceRange,
     selectedCategory,
@@ -33,8 +34,10 @@ const ProductSection = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row max-w-7xl justify-center gap-3 mx-auto px-4 py-8">
-
+    <div>
+        <p className="text-center text-2xl font-semibold pt-2">Total Results {totalresult}</p>
+         <div className="flex flex-col md:flex-row max-w-7xl justify-center gap-3 mx-auto px-3 md:px-0 pb-4">
+      
       {/* <div className="flex items-center justify-center mb-8">
         <button
           onClick={() => setShowFilters(!showFilters)}
@@ -43,8 +46,21 @@ const ProductSection = () => {
           {showFilters ? "Hide Filters" : "Show Filters"}
         </button>
       </div>   */}
-     
-        <FilterSection
+      <div className="md:hidden">
+        <FAB_Filter
+        priceRange={priceRange}
+          handlePriceChange={handlePriceChange}
+          categories={categories}
+          selectedCategory={selectedCategory}
+          handleCategoryChange={setSelecetedCategory}
+          searchQuery={searchQuery}
+          handleSearchQuery={setSearchQuery}
+          sortOrder={sortOrder}
+          handleSorting={setSortOrder}
+        />
+      </div>
+        <div className="my-8 mx-2 hidden md:block">
+          <FilterSection
           priceRange={priceRange}
           handlePriceChange={handlePriceChange}
           categories={categories}
@@ -55,16 +71,23 @@ const ProductSection = () => {
           sortOrder={sortOrder}
           handleSorting={setSortOrder}
         />
+        </div>
+        
      <div className="w-auto md:w-[1000px]">
         <ProductList products={products} loading={loading} />
-      <Pagination
+        <div className="py-2">
+            <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
         handlePageChange={setCurrentPage}
       />
+        </div>
+      
       </div>
       
     </div>
+      </div>
+   
   );
 };
 
