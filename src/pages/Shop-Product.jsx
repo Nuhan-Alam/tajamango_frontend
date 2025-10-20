@@ -18,7 +18,7 @@ const Shop_Product = () => {
     setLoading(true);
     apiClient.get(`/products/${productId}/`).then((res) => {
       setProduct(res.data);
-      console.log(res.data);
+      // console.log(res.data);
       setLoading(false);
     });
   }, [productId]);

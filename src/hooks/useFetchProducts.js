@@ -19,10 +19,9 @@ const useFetchProduct = (
       try {
         const response = await apiClient.get(url);
         const data = await response.data;
-
         setProducts(data.results);
         setTotalresult(data.count)
-        setTotalPages(Math.ceil(data.count / data.results.length));
+        setTotalPages(Math.ceil(data.count / 10));
       } catch (error) {
         console.log(error);
       } finally {
