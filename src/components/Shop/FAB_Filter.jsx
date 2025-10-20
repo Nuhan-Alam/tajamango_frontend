@@ -17,10 +17,10 @@ const FAB_Filter = ({
   const [hide, setHide] = useState(true);
 
   return (
-    <div className="fixed top-0 left-0 z-20">
+    <div className="fixed top-0 left-0 z-20 pointer-events-none">
       {hide && (
         <button
-          className="bg-[#8FA31E] mt-20 p-1 rounded-r-sm"
+          className="bg-[#8FA31E] mt-20 p-1 rounded-r-sm pointer-events-auto"
           onClick={() => setHide(!hide)}
         >
           <div className="flex justify-center items-center gap-1">
@@ -30,10 +30,12 @@ const FAB_Filter = ({
         </button>
       )}
       {!hide && (
-        <div  className="fixed top-0 left-0 z-40 h-full w-full pr-16 " onClick={() => setHide(true)}>
-            <div className="h-full bg-[#EFF5D2]/95" onClick={(e) => e.stopPropagation()}>
+        <div  className="fixed top-0 left-0 z-40 h-full w-full pr-16 pointer-events-auto" onClick={() => setHide(true)}>
+            <div className="relative top-10 rounded-r-2xl bg-[#EFF5D2]" style={{ 
+    animation: 'slideIn 0.3s ease-out forwards' 
+  }} onClick={(e) => e.stopPropagation()}>
                 <button
-            className="absolute top-2 right-16"
+            className="absolute top-2 right-1"
             onClick={() => setHide(!hide)}
           >
             <IoClose className="text-black w-10 h-10" />

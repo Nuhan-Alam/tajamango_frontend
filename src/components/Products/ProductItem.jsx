@@ -3,8 +3,8 @@ import { Link } from "react-router";
 const ProductItem = ({ product }) => {
   return (
     <Link to={`/shop/${product.id}`}>
-      <div className="card max-w-90 w-auto shadow-sm hover:bg-[#EFF5D2]">
-        <figure className="px-2 md:px-10 pt-2 md:pt-10">
+      <div className="card max-w-90 w-auto px-1.5 md:px-0 shadow-sm hover:bg-[#EFF5D2]">
+        <figure className="px-2 md:px-10 pt-2 md:pt-5">
           <img
             src={
               product.images.length > 0 ? `https://res.cloudinary.com/dbgsrmvgi/${product.images[0].image}` : "https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861847/default_product_hbqip5.png"

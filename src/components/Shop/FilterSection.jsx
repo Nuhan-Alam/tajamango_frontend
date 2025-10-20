@@ -13,9 +13,9 @@ const FilterSection = ({
     <div className=" flex flex-col gap-3">
       {/* Price Range */}
       <div className=" p-4 rounded-lg shadow">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <p className="block text-sm font-medium text-gray-700 mb-2">
           Price Range
-        </label>
+        </p>
         {/* Min Range  */}
         <div className=" flex items-center py-0.5 space-x-4">
           <input
@@ -24,7 +24,7 @@ const FilterSection = ({
             max={priceRange[1]}
             value={priceRange[0]}
             onChange={(e) => handlePriceChange(0, Number(e.target.value))}
-            className="w-15 p-0.5 text-sm text-center border-2 border-[#C6D870] rounded-md"
+            className="w-15 p-0.5 text-sm text-center border-2 border-[#C6D870] rounded-md focus:outline-none focus:border-[#C6D870] focus:ring-2 focus:ring-[#C6D870]/50"
           
           />
           <input
@@ -45,7 +45,7 @@ const FilterSection = ({
             max="1000"
             value={priceRange[1]}
             onChange={(e) => handlePriceChange(1, Number(e.target.value))}
-            className="w-15 p-0.5 text-sm text-center border-2 border-[#C6D870] rounded-md"
+            className="w-15 p-0.5 text-sm text-center border-2 border-[#C6D870] rounded-md focus:outline-none focus:border-[#C6D870] focus:ring-2 focus:ring-[#C6D870]/50"
           />
           <input
             type="range"
@@ -66,11 +66,11 @@ const FilterSection = ({
 
       {/* Category Filter */}
       <div className=" p-2 rounded-lg shadow">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <p className="block text-sm font-medium text-gray-700 mb-2">
           Category
-        </label>
+        </p>
         <select
-          className="w-full text-sm p-1 border-2 border-[#C6D870] rounded-md"
+          className="w-full text-sm p-1 border-2 border-[#C6D870] rounded-md focus:outline-none focus:border-[#C6D870] focus:ring-2 focus:ring-[#C6D870]/50"
           value={selectedCategory}
           onChange={(e) => handleCategoryChange(e.target.value)}
         >
@@ -85,25 +85,25 @@ const FilterSection = ({
 
       {/* Search */}
       <div className="text-sm p-2 rounded-lg shadow">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <p className="block text-sm font-medium text-gray-700 mb-2">
           Search
-        </label>
+        </p>
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => handleSearchQuery(e.target.value)}
           placeholder="Search by name..."
-          className="w-full text-sm p-1 border-2 border-[#C6D870] rounded-md"
+          className="w-full text-sm p-1 border-2 border-[#C6D870] rounded-md focus:outline-none focus:border-[#C6D870] focus:ring-2 focus:ring-[#C6D870]/50"
         />
       </div>
 
       {/* Sorting  */}
       <div className="text-sm p-2 rounded-lg shadow">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <p className="block text-sm font-medium text-gray-700 mb-2">
           Sort By Price/Most-Recent
-        </label>
+        </p>
         <select
-          className="w-full text-sm p-1 border-2 border-[#C6D870] rounded-md"
+          className="w-full text-sm p-1 border-2 border-[#C6D870] rounded-md focus:outline-none focus:border-[#C6D870] focus:ring-2 focus:ring-[#C6D870]/50"
           value={sortOrder}
           onChange={(e) => handleSorting(e.target.value)}
         >

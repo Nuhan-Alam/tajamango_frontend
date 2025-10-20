@@ -9,7 +9,7 @@ const ProductList = ({ products, loading }) => {
     );
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-2 gap-6">
       {products.map((product) => (
         <ProductItem product={product} key={product.id} />
       ))}
