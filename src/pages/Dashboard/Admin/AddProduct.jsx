@@ -65,7 +65,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 mb-10 bg-white shadow-lg rounded-lg">
+    <div className="max-w-2xl mx-auto p-6 mb-10 shadow-lg rounded-lg">
       <h2 className="text-2xl font-semibold mb-4">Add New Product</h2>
       {!productId ? (
         <form onSubmit={handleSubmit(handleProductAdd)} className="space-y-4">
@@ -73,7 +73,7 @@ const AddProduct = () => {
             <label className="block text-sm font-medium">Product Name</label>
             <input
               {...register("name", { required: true })}
-              className="input input-bordered w-full"
+              className="input input-bordered bg-[#EFF5D2]/50 w-full"
               placeholder="Product Name"
             />
             {errors.name && (
@@ -85,7 +85,7 @@ const AddProduct = () => {
             <label className="block text-sm font-medium">Description</label>
             <textarea
               {...register("description", { required: true })}
-              className="textarea textarea-bordered w-full"
+              className="textarea textarea-bordered bg-[#EFF5D2]/50  w-full"
               placeholder="Description"
             ></textarea>
             {errors.description && (
@@ -104,7 +104,7 @@ const AddProduct = () => {
                   return !isNaN(parsedValue) || "Please enter a valid number!";
                 },
               })}
-              className="input input-bordered w-full"
+              className="input input-bordered bg-[#EFF5D2]/50 w-full"
               placeholder="Price"
             />
             {errors.price && (
@@ -117,7 +117,7 @@ const AddProduct = () => {
             <input
               type="number"
               {...register("stock", { required: true })}
-              className="input input-bordered w-full"
+              className="input input-bordered bg-[#EFF5D2]/50 w-full"
               placeholder="Stock"
             />
             {errors.stock && (
@@ -130,11 +130,11 @@ const AddProduct = () => {
             <label className="block text-sm font-medium">Category</label>
             <select
               {...register("category", { required: true })}
-              className="select select-bordered w-full"
+              className="select select-bordered bg-[#EFF5D2] w-full"
             >
               <option value="">Select a category</option>
               {categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>
+                <option  key={cat.id} value={cat.id}>
                   {cat.name}
                 </option>
               ))}
@@ -151,13 +151,21 @@ const AddProduct = () => {
       ) : (
         <div>
           <h3 className="text-lg font-medium mb-2">Upload Product Images</h3>
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            className="file-input file-input-bordered w-full"
-            onChange={handleImageChange}
-          />
+          <div className="relative">
+  <input
+    type="file"
+    multiple
+    accept="image/*"
+    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+    onChange={handleImageChange}
+  />
+  <button 
+    type="button"
+    className="btn bg-[#C6D870] hover:bg-[#556B2F] text-black w-auto"
+  >
+    Choose Files
+  </button>
+</div>
           {previewImages.length > 0 && (
             <div className="flex gap-2 mt-2">
               {previewImages.map((src, idx) => (

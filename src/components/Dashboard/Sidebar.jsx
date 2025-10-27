@@ -42,7 +42,7 @@ const Sidebar = ({ currentOrders }) => {
   const menuItems = user.is_staff ? adminMenues : customerMenus;
 
   return (
-    <div className="bg-[#C6D870]/50 drawer-side z-10">
+    <div className="bg-[#C6D870]/50 drawer-side z-50">
       <label
         htmlFor="drawer-toggle"
         aria-label="close sidebar"
