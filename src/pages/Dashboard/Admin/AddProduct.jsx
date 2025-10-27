@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 // import apiClient from "../../../services/api-client";
 import authApiClient from "../../../services/auth-api-client";
 import useFetchCategories from "../../../hooks/useFetchCategories";
+import { FaThumbsUp } from "react-icons/fa";
 
 
 const AddProduct = () => {
@@ -10,9 +11,11 @@ const AddProduct = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   // const [categories, setCategories] = useState([]);
+  const [showSuccess, setShowSuccess] = useState(false); 
   const [productId, setProductId] = useState(null);
   const [previewImages, setPreviewImages] = useState([]);
   const [images, setImages] = useState([]);
@@ -40,7 +43,6 @@ const AddProduct = () => {
   // Handle Image Change
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    console.log(files);
     setImages(files);
     setPreviewImages(files.map((file) => URL.createObjectURL(file)));
   };
@@ -56,9 +58,14 @@ const AddProduct = () => {
         formData.append("image", image);
         console.log(formData);
         await authApiClient.post(`/products/${productId}/images/`, formData);
-        setLoading(false);
       }
-      alert("Images uploaded successfully");
+      reset();
+      setImages([]);          
+      setPreviewImages([]);
+      setProductId(null);
+      setLoading(false);
+      setShowSuccess(true); // Show success message
+      setTimeout(() => setShowSuccess(false), 3000);
     } catch (error) {
       console.log(("Error uploading image", error));
     }
@@ -66,6 +73,15 @@ const AddProduct = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 mb-10 shadow-lg rounded-lg">
+      {/* Success Message */}
+            {showSuccess && (
+              <div className="fixed w-full h-full flex justify-center items-center top-4 left-1/2 transform -translate-x-1/2 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in">
+                <div className="bg-white w-3/4 md:w-1/2 h-2/3 md:h-1/2 rounded-2xl flex flex-col justify-center items-center text-[#556B2F] text-lg md:text-4xl font-bold text-center">
+                <FaThumbsUp className="w-1/2 h-1/2 mb-0 md:mb-3" />
+                  Product added successfully!
+                </div>
+              </div>
+            )}
       <h2 className="text-2xl font-semibold mb-4">Add New Product</h2>
       {!productId ? (
         <form onSubmit={handleSubmit(handleProductAdd)} className="space-y-4">

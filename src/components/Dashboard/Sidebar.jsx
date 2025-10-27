@@ -10,6 +10,7 @@ import {
 import { SlLogout } from "react-icons/sl";
 import { FaHistory } from "react-icons/fa";
 import { FaDropbox } from "react-icons/fa";
+import { TbCategoryPlus } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 
@@ -30,6 +31,7 @@ const Sidebar = ({ currentOrders }) => {
   const adminMenues = [
     { to: "/dashboard", icon: FiBarChart2, label: "Dashboard" },
     { to: "/dashboard/products/add", icon: FiPlusCircle, label: "Add Product" },
+    { to: "/dashboard/Category/add", icon: TbCategoryPlus, label: "Add Category" },
     // { to: "/categories", icon: FiTag, label: "Categories" },
     // { to: "/categories/add", icon: FiPlusCircle, label: "Add Category" },
     // { to: "/dashboard/cart", icon: FiShoppingCart, label: "Cart" },

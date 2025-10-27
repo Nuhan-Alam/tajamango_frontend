@@ -21,6 +21,7 @@ import Cart from "../pages/Dashboard/Cart";
 import Orders from "../pages/Dashboard/Orders";
 import History from "../pages/Dashboard/History";
 import Orderdetails from "../pages/Dashboard/Orderdetails";
+import AddCategory from "../pages/Dashboard/Admin/AddCategory";
 
 const AppRoute = () => {
   return (
@@ -66,6 +67,7 @@ const AppRoute = () => {
           <Route path="history" element={<History />} />
           {/* <Route path="payment/success/" element={<PaymentSuccess />} /> */}
           <Route path="products/add" element={<AddProduct />} />
+          <Route path="category/add" element={<AddCategory />} />
         </Route>
       </Route>
     </Routes>
