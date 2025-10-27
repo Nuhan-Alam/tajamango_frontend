@@ -5,31 +5,13 @@ import TrendingProducts from "../components/home/TrendingProducts";
 import TestimonialsSection from "../components/home/TestimonialsSection";
 import Stats from "../components/home/Stats";
 import FAQ from "../components/home/FAQ";
-import { useEffect, useState } from "react";
-import Loading from "../components/Loading";
-import apiClient from "../services/api-client";
+import { useOutletContext } from "react-router";
 
 const Home = () => {
-  const [loading, setLoading] = useState(false);
-  const [stats, setStats] = useState(null);
-  useEffect(() => {
-    setLoading(true);
-    const fetchStats = async () => {
-      try {
-        const res = await apiClient.get("/stats");
-        setStats(res.data);
-      } catch (error) {
-        console.error("Failed to fetch categories:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchStats();
-  }, []);
+  const { stats } = useOutletContext();
+
   return (
     <div>
-      {!loading ? (
-        <>
           <TopSection />
           <Stats stats={stats} />
           <FlashSale />
@@ -37,10 +19,6 @@ const Home = () => {
           <TrendingProducts />
           <TestimonialsSection />
           <FAQ />
-        </>
-      ) : (
-        <Loading />
-      )}
     </div>
   );
 };
