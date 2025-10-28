@@ -15,6 +15,15 @@ const FAB_Filter = ({
   handleSorting,
 }) => {
   const [hide, setHide] = useState(true);
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+  setIsClosing(true);
+  setTimeout(() => {
+    setHide(true);
+    setIsClosing(false);
+  }, 300); // Match this with your animation duration
+};
 
   return (
     <div className="fixed top-0 left-0 z-20 pointer-events-none">
@@ -30,13 +39,13 @@ const FAB_Filter = ({
         </button>
       )}
       {!hide && (
-        <div  className="fixed top-0 left-0 z-40 h-full w-full pr-16 pointer-events-auto" onClick={() => setHide(true)}>
-            <div className="relative top-10 rounded-r-2xl bg-[#EFF5D2]" style={{ 
-    animation: 'slideIn 0.3s ease-out forwards' 
-  }} onClick={(e) => e.stopPropagation()}>
+        <div  className="fixed top-0 left-0 z-40 h-full w-full pr-16 pointer-events-auto" onClick={handleClose}>
+            <div className="relative top-10 rounded-r-2xl bg-[#EFF5D2]"
+            style={{ animation: isClosing ? 'slideOut 0.3s ease-out forwards' : 'slideIn 0.3s ease-out forwards' }}
+            onClick={(e) => e.stopPropagation()}>
                 <button
             className="absolute top-2 right-1"
-            onClick={() => setHide(!hide)}
+            onClick={handleClose}
           >
             <IoClose className="text-black w-10 h-10" />
           </button>
@@ -50,6 +59,7 @@ const FAB_Filter = ({
             handleSearchQuery={handleSearchQuery}
             sortOrder={sortOrder}
             handleSorting={handleSorting}
+            handleClose={handleClose}
           />
             </div>
           

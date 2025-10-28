@@ -1,14 +1,17 @@
+import { useState } from "react";
+
 const FilterSection = ({
   priceRange,
   handlePriceChange,
   categories,
   selectedCategory,
   handleCategoryChange,
-  searchQuery,
   handleSearchQuery,
   sortOrder,
   handleSorting,
+  handleClose,
 }) => {
+  const [search, setSearch]= useState("");
   return (
     <div className=" flex flex-col gap-3">
       {/* Price Range */}
@@ -72,7 +75,10 @@ const FilterSection = ({
         <select
           className="w-full text-sm p-1 border-2 border-[#C6D870] rounded-md focus:outline-none focus:border-[#C6D870] focus:ring-2 focus:ring-[#C6D870]/50"
           value={selectedCategory}
-          onChange={(e) => handleCategoryChange(e.target.value)}
+          onChange={(e) => {
+            handleCategoryChange(e.target.value);
+            handleClose();
+          }}
         >
           <option value="" className="bg-[#EFF5D2] text-sm">All Categories</option>
           {categories.map((category) => (
@@ -84,17 +90,25 @@ const FilterSection = ({
       </div>
 
       {/* Search */}
-      <div className="text-sm p-2 rounded-lg shadow">
-        <p className="block text-sm font-medium text-gray-700 mb-2">
-          Search
-        </p>
+      <div className="flex flex-col justify-center items-center text-sm p-2 rounded-lg shadow">
+        <div className="w-full">
+            <p className="block text-left text-sm font-medium text-gray-700 mb-2">
+            Search
+          </p>
+        </div>
         <input
           type="text"
-          value={searchQuery}
-          onChange={(e) => handleSearchQuery(e.target.value)}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Search by name..."
           className="w-full text-sm p-1 border-2 border-[#C6D870] rounded-md focus:outline-none focus:border-[#C6D870] focus:ring-2 focus:ring-[#C6D870]/50"
         />
+        <button 
+          onClick={()=>{
+            handleSearchQuery(search);
+            handleClose();
+          }}
+          className="bg-[#8FA31E] rounded-md text-white px-3 py-1.5 mt-1">Search</button>
       </div>
 
       {/* Sorting  */}
@@ -105,7 +119,10 @@ const FilterSection = ({
         <select
           className="w-full text-sm p-1 border-2 border-[#C6D870] rounded-md focus:outline-none focus:border-[#C6D870] focus:ring-2 focus:ring-[#C6D870]/50"
           value={sortOrder}
-          onChange={(e) => handleSorting(e.target.value)}
+          onChange={(e) => {
+            handleSorting(e.target.value);
+            handleClose();
+          }}
         >
           <option className="bg-[#EFF5D2]" value="">Default</option>
           <option className="bg-[#EFF5D2]" value="price">Price: Low to High</option>
