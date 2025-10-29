@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 const TopSection = () => {
   return (
@@ -15,7 +15,12 @@ const TopSection = () => {
           <p className="montserrat-500 leading-tight text-white text-3xl sm:text-6xl px-4 sm:px-56 mt-4 sm:mt-0">
             Mangoes from all over the world at your fingertips
           </p>
-          <button className="montserrat-400 bg-[#8FA31E] hover:bg-[#556B2F] p-3 px-6 mt-10 text-white rounded-full">Shop Now</button>
+          <Link
+            to="/shop"
+            className="montserrat-400 bg-[#8FA31E] hover:bg-[#556B2F] p-3 px-6 mt-10 text-white text-lg rounded-full"
+          >
+            Shop Now
+          </Link>
         </div>
       </div>
     </div>
