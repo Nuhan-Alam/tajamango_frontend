@@ -25,6 +25,13 @@ const DashboardLayout = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const closeDrawer = () => {
+  const drawerToggle = document.getElementById('drawer-toggle');
+  if (drawerToggle) {
+    drawerToggle.click();
+  }
+};
+
   return (
     <>
     <NavBg/>
@@ -50,7 +57,7 @@ const DashboardLayout = () => {
       </div>
 
       {/* Sidebar */}
-      <Sidebar currentOrders={currentOrders} orderLoading={orderLoading}/>
+      <Sidebar currentOrders={currentOrders} orderLoading={orderLoading} closeDrawer={closeDrawer}/>
     </div>
     </>
     

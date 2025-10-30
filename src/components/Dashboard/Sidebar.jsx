@@ -14,11 +14,11 @@ import { TbCategoryPlus } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 
-const Sidebar = ({ currentOrders }) => {
+const Sidebar = ({ currentOrders,closeDrawer }) => {
   const { user, logoutUser } = useAuthContext();
   const navigate = useNavigate();
   const orderNum = currentOrders?.length;
-  console.log("This is from sidebar", orderNum);
+  // console.log("This is from sidebar", orderNum);
 
   const customerMenus = [
     { to: "/dashboard", icon: FiBarChart2, label: "Profile" },
@@ -43,6 +43,7 @@ const Sidebar = ({ currentOrders }) => {
 
   const menuItems = user.is_staff ? adminMenues : customerMenus;
 
+  
   return (
     <div className="bg-[#C6D870]/50 drawer-side z-50">
       <label
@@ -55,7 +56,7 @@ const Sidebar = ({ currentOrders }) => {
         <ul className="menu menu-md flex justify-start items-start gap-5">
           {menuItems.map((item, index) => (
             <li key={index}>
-              <Link to={item.to} className="flex items-center">
+              <Link to={item.to} className="flex items-center" onClick={closeDrawer}>
                 <div className="indicator cursor-pointer">
                   <item.icon className="h-4 md:h-6 w-4 md:w-6" />
                   {item.label==="Current Orders" && orderNum>0 && <p className=" rounded-md px-1 indicator-item bg-red-300 text-white lg:text-sm">
