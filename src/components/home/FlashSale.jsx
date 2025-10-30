@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 const FlashSale = () => {
   return (
-    <div className="relative bg-cover bg-center h-[350px]"
+    <div className="relative bg-cover bg-center min-h-screen"
           style={{ backgroundImage: `url(https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861849/flashsale_cmy7dl.jpg)` }}>
             <div className="absolute inset-0 bg-black/60">
-        <section className="max-w-7xl flex flex-col items-center justify-center mx-auto px-4 py-12 text-center h-full">
+        <section className="max-w-7xl flex flex-col items-center justify-center mx-auto px-4 py-12 text-center min-h-screen">
       {/* Heading */}
       <h2 className="montserrat-700 text-4xl text-white font-bold mb-4">
         Flash Sale: Up to 50% Off On Select Items!

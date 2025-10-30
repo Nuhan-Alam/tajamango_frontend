@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 const TopSection = () => {
   return (
     <div
-      className="relative bg-cover bg-center h-[630px]"
+      className="relative bg-cover bg-center min-h-screen"
       style={{ backgroundImage: `url(https://res.cloudinary.com/dbgsrmvgi/image/upload/v1757861848/home_top_bg_br6eug.jpg)` }}
     >
       <div className="absolute inset-0 bg-black/60"></div>
-      <div className="relative z-10 flex items-center justify-center h-full">
+      <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center text-center mt-0 sm:mt-0">
           <p className="montserrat-400 tracking-widest text-white pb-5 text-sm sm:text-base">
             WELCOME TO TAJAMANGO.COM

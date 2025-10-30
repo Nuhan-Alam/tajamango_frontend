@@ -37,9 +37,9 @@ const About = () => {
   return (
     <div className="min-h-screen bg-[#C6D870]/50 " >
       {/* Hero Section */}
-      <section className="py-16 px-4 relative bg-cover bg-center h-[630px]" style={{ backgroundImage: `url(https://images.alphacoders.com/131/thumb-1920-1318266.jpeg)` }}>
+      <section className="py-16 px-4 relative bg-cover bg-center min-h-screen" style={{ backgroundImage: `url(https://images.alphacoders.com/131/thumb-1920-1318266.jpeg)` }}>
         <div className="absolute inset-0 bg-black/30"></div>
-        <div className="relative z-10 flex flex-col max-w-7xl mx-auto items-center justify-center h-full">
+        <div className="relative z-10 flex flex-col max-w-7xl mx-auto items-center justify-center min-h-screen">
           <p className="montserrat-400 text-lg text-white mb-4">ABOUT</p>
           <h1 className="montserrat-500 tracking- sm:text-base text-4xl md:text-6xl text-center  text-white">
        
