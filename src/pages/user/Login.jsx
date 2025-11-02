@@ -24,7 +24,14 @@ const Login = () => {
     try {
       await loginUser(data);
       await createOrGetCart();
-      navigate("/");
+      const itemLink = localStorage.getItem("item")
+      if(itemLink){
+        console.log(itemLink);
+        navigate(itemLink);
+        localStorage.removeItem("item"); 
+      }else{
+        navigate("/");
+      }
     } catch (error) {
       console.log("Login Failed", error);
     } finally {

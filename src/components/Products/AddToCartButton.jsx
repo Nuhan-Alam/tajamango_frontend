@@ -26,6 +26,7 @@ const AddToCartButton = ({ product, localCart, setLocalCart }) => {
 
   const addToCart = async () => {
     if(!user){
+      localStorage.setItem("item", window.location.pathname);
       navigate('/login');
       return null;
     }
